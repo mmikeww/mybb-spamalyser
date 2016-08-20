@@ -358,8 +358,8 @@ function spamalyser_run(&$ph, $newthread, $newpost, $fid, $postcount) {
 		$numreports = $db->fetch_field($db->query('
 			SELECT COUNT(DISTINCT p.pid) AS numreports
 			FROM '.TABLE_PREFIX.'posts p
-			INNER JOIN '.TABLE_PREFIX.'reportedposts r ON r.pid=p.pid
-			WHERE p.uid='.$user['uid'].' AND p.visible=1 AND r.reportstatus!=0'.$qx
+			INNER JOIN '.TABLE_PREFIX.'reportedcontent r ON r.id=p.pid
+			WHERE p.uid='.$user['uid'].' AND p.visible=1 AND r.reportstatus!=0 AND (r.type="post" OR type="")'.$qx
 		), 'numreports');
 		$report_weight = min($numreports * $markreport_weight, 1) * max($postweight, 0);
 		$components['markedreports'] = -$report_weight;
