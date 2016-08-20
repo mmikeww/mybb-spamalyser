@@ -15,7 +15,7 @@ function spamalyser_info() {
 		'author'        => 'ZiNgA BuRgA',
 		'authorsite'    => 'http://zingaburga.com/',
 		'version'       => '0.93',
-		'compatibility' => '14*,15*,16*',
+		'compatibility' => '14*,15*,16*,18*',
 		'guid'          => ''
 	);
 }
