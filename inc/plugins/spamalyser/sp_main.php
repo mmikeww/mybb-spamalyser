@@ -877,14 +877,15 @@ function spamalyser_report_post($pid, $thresh) {
 	$settings =& $GLOBALS['mybb']->settings;
 	if($settings['spamalyser_report_nodupe']) {
 		// check for attached unread reports
-		if($db->fetch_field($db->simple_select('reportedposts', 'rid', 'pid='.$pid.' AND reportstatus=0', array('limit' => 1)), 'rid')) return false;
+		if($db->fetch_field($db->simple_select('reportedcontent', 'rid', 'id='.$pid.' AND reportstatus=0 AND (type="post" OR type="")', array('limit' => 1)), 'rid')) return false;
 	}
 	$lang->load('spamalyser');
 	$post = get_post($pid);
-	$db->insert_query('reportedposts', array(
-		'pid' => $pid,
-		'tid' => $post['tid'],
-		'fid' => $post['fid'],
+	$db->insert_query('reportedcontent', array(
+		'id' => $pid,
+		'id2' => $post['tid'],
+		'id3' => $post['fid'],
+		'type' => 'post',
 		'uid' => (int)$settings['spamalyser_report_uid'],
 		'dateline' => TIME_NOW,
 		'reportstatus' => 0,
