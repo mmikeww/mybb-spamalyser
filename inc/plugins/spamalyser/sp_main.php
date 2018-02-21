@@ -891,7 +891,7 @@ function spamalyser_report_post($pid, $thresh) {
 		'reportstatus' => 0,
 		'reason' => $db->escape_string($lang->sprintf($lang->spamalyser_report_msg, $thresh))
 	));
-	$GLOBALS['cache']->update_reportedposts();
+	$GLOBALS['cache']->update_reportedcontent();
 	return true;
 }
 
