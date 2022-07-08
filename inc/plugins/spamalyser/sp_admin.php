@@ -166,7 +166,7 @@ function spamalyser_install() {
 	)'.$collation);
 	$db->write_query('CREATE TABLE '.$db->table_prefix.'spamalyser_log (
 		lid int(11) unsigned not null auto_increment,
-		pid int(11) unsigned not null,
+		pid int(11) unsigned not null default 0,
 		event tinyint(3) not null, -- 0=newpost, 1=editpost, 2=newpost (automerged)
 		
 		-- the following may be considered redundant, but is required if posts get deleted/blocked etc
